@@ -24,3 +24,28 @@ def print_operation_table(operation, num_rows=6, num_columns=6):
 def multiply(x, y):
     return x * y
 print_operation_table(multiply, 5, 5)
+
+
+# Решение преподавателя
+def show_table(table: list[list[int]]) -> None:
+    """
+    Просто красиво печатает матрицу
+    """
+    print('\n'.join('\t'.join(map(str, row)) for row in table))
+
+def print_operate_table(opera: callable,
+                        num_columns: int = 4,
+                        num_rows: int = 4) -> None:
+    """
+    Выводит таблицу для чисел с заданной операцией opera,
+    числом столбцов num_columns и строк num_rows
+    """
+    table = [list(range(i, i +num_columns)) for i in range(1, num_rows + 1)]
+    for i in range(1, len(table)):
+        for j in range(1, len(table[i])):
+            table[i][j] = opera(table[i][0], table[0][j])
+    show_table(table)
+
+n = 4
+m = 5
+print_operate_table(lambda x, y: x * y, n, m)    

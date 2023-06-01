@@ -21,3 +21,21 @@ if count % 2 == 0:
     print("Ритм есть")
 else:
     print("Ритма нет")
+
+
+
+# решение преподавателя
+def rhythm_check(phrase: str) -> str:
+    '''
+    Проверяет на ритм фразу и возвращает строку, “Парам пам-пам”, если с ритмом все в порядке и “Пам парам”, если ритм нарушен
+    '''
+    vowels = 'уеыаоэяиюё'
+    vowels_count = set(map(lambda x:sum(1 for let in x if let in vowels),
+                           phrase.split()))
+    if len(vowels_count) == 1:
+        return 'Парам пам-пам'
+    return 'Пам парам'
+
+
+lyrics = 'пара-ра-рам рам-пам-папам па-ра-па-да'
+print(rhythm_check(lyrics))
